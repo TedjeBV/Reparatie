@@ -1,0 +1,17 @@
+div.category-container {
+    color: black;
+    background-color: #00458249;
+
+    padding: 8px;
+    border-radius: 12px;
+
+    transition: 0.5s;
+    transition-property: color, background-color, border-radius;
+}
+
+div.category-container:hover {
+    color: white;
+    background-color: #004682;
+
+    border-radius: 4px;
+}

@@ -24,6 +24,41 @@ function renderCategory(category) {
     header.innerText = category.type;
     container.appendChild(header);
 
+    // Content
+    const content = document.createElement('div');
+    content.classList.add('category-content');
+    container.appendChild(content);
+
+    // Categories
+    category.categories.forEach(subcategory => {
+        const categoryContainer = document.createElement('div');
+        categoryContainer.classList.add('subcategory-container');
+
+        const categoryHeader = document.createElement('h4');
+        categoryHeader.innerText = subcategory.type;
+
+        const categoryContent = document.createElement('div');
+        categoryContent.classList.add('subcategory-content');
+
+        // Guides
+        const guides = document.createElement('ul');
+
+        subcategory.files.forEach(guide => {
+            console.log(guide.name);
+            const guideContainer = document.createElement('li');
+            guideContainer.classList.add('guide');
+            guideContainer.innerText = guide.name;
+            guides.appendChild(guideContainer);
+        });
+
+        categoryContent.appendChild(guides);
+
+        categoryContainer.appendChild(categoryHeader);
+        categoryContainer.appendChild(categoryContent);
+
+        content.appendChild(categoryContainer);
+    });
+
     return container;
 
 };

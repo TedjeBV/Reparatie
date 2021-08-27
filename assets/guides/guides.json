@@ -8,6 +8,8 @@
                     "files": [
                         {
                             "path": "laptop-replace_keys",
+                            "author": "Thijs Boom",
+                            "name": "Toetsen vervangen",
                             "content": "REPLACE_KEYS"
                         }
                     ]
