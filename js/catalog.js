@@ -65,7 +65,7 @@ function renderCategory(category) {
 // Main function
 function main() {
 
-    render(session.guides);
+    render(session.data);
 
 };
 
@@ -73,7 +73,7 @@ function main() {
 // Fetch all needed files and run
 // Files to load
 const promises = [
-    fetch('assets/guides/guides.json').then(r => r.json()).then(json => session.guides = json),
+    fetch('assets/guides/guides.json').then(r => r.json()).then(json => session.data = json),
 ];
 
 // Run if all files are loaded
