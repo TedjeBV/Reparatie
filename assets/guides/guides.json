@@ -7,7 +7,7 @@
                     "type": "KEYBOARD",
                     "files": [
                         {
-                            "path": "laptop-replace_keys",
+                            "path": "laptop-keyboard-replace_keys",
                             "author": "Thijs Boom",
                             "name": "Toetsen vervangen",
                             "content": "REPLACE_KEYS"
