@@ -1,0 +1,18 @@
+{
+    "nl": [
+        {
+            "type": "LAPTOP",
+            "categories": [
+                {
+                    "type": "KEYBOARD",
+                    "files": [
+                        {
+                            "path": "laptop-replace_keys",
+                            "content": "REPLACE_KEYS"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
