@@ -8,7 +8,21 @@ session.guide = decodeURI((new URL(document.location)).searchParams.get('guide')
 // Renderer
 function render(guide, info) {
 
+    const container = document.querySelector('main');
 
+    const infoContainer = document.createElement('p');
+    infoContainer.classList.add('info');
+
+    const author = document.createElement('span');
+    author.innerHTML = 'Door ' + info.author;
+    infoContainer.appendChild(author);
+
+    container.appendChild(infoContainer);
+
+    const guideText = document.createElement('div');
+    guideText.innerHTML = MarkdownToHtml.parse(guide);
+
+    container.appendChild(guideText);
 
 }
 
