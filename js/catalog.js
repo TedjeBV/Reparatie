@@ -44,7 +44,6 @@ function renderCategory(category) {
         const guides = document.createElement('ul');
 
         subcategory.files.forEach(guide => {
-            console.log(guide.name);
             const guideContainer = document.createElement('li');
             guideContainer.classList.add('guide');
             guideContainer.innerText = guide.name;
