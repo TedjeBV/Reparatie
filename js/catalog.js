@@ -18,6 +18,7 @@ function renderCategory(category) {
     // Container
     const container = document.createElement('div');
     container.classList.add('category-container');
+    container.setAttribute('tabindex', '1');
 
     // Header
     const header = document.createElement('h3');

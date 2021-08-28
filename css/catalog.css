@@ -9,7 +9,8 @@ div.category-container {
     transition-property: color, background-color, border-radius;
 }
 
-div.category-container:hover {
+div.category-container:hover,
+div.category-container:focus {
     color: white;
     background-color: #004682;
 
@@ -20,7 +21,7 @@ div.category-content {
     display: none;
 }
 
-div.category-container:hover div.category-content {
+div.category-container:focus div.category-content {
     display: block;
 }
 
