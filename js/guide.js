@@ -1,9 +1,33 @@
 // Session object
 const session = {};
 
-session.lang = 'nl';
+session.language = 'nl';
 
 session.guide = decodeURI((new URL(document.location)).searchParams.get('guide'));
+
+// Get correct tranlation
+function getTranslation(key) {
+    // Check if language is available
+    if (session.translation[session.language] === undefined) { return key; };
+
+    // Split the key
+    const keys = key.split('.');
+    let translation = session.translation[session.language];
+
+    // Loop through the keys to get the correct translation
+    for (let i = 0; i < keys.length; i++) {
+        translation = translation[keys[i]];
+        if (translation === undefined) {
+            console.error(`Translation for ${key} in ${session.language} not found`);
+            return key
+        };
+        if (typeof translation !== 'object') { return translation; }
+    }
+
+    console.error(`Translation for ${key} in ${session.language} not found`);
+    return key
+
+};
 
 // Renderer
 function render(guide, info) {
@@ -59,7 +83,7 @@ function main() {
 
     // Get correct guide from data
     const split = session.guide.split('-');
-    let guide = session.data[session.lang];
+    let guide = session.data[session.language];
     if (guide === undefined) { renderError('INVALID_LANG'); return };
     guide = guide.find( ({ type }) => type === split[0].toUpperCase());
     if (guide === undefined) { renderError('INVALID-CATEGORY'); return };
@@ -69,7 +93,7 @@ function main() {
     if (guide === undefined) { renderError('INVALID_GUIDE'); return };
 
     // Fetch text and render
-    fetch(`assets/guides/${session.lang}/${guide.path}.md`)
+    fetch(`assets/guides/${session.language}/${guide.path}.md`)
         .then(r => r.text())
         .then(text => render(text, guide));
 
@@ -79,6 +103,7 @@ function main() {
 // Fetch all needed files and run
 // Files to load
 const promises = [
+    fetch('assets/translation.json').then(r => r.json()).then(json => session.translation = json),
     fetch('assets/guides/guides.json').then(r => r.json()).then(json => session.data = json),
 ];
 
