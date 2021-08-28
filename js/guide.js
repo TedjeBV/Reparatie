@@ -26,18 +26,38 @@ function render(guide, info) {
 
 }
 
+// Error renderer
+function renderError(error) {
+
+    console.error('Guide Renderer Error: ' + error);
+
+}
+
 // Main function
 function main() {
+
+    // Check if guide is selected
+    if (session.guide === 'null') { renderError('NO_SELECT'); return };
+
+    // console.log('Loading guide: ' + session.guide);
 
     // Get correct guide from data
     const split = session.guide.split('-');
     let guide = session.data[session.lang];
+    if (guide === undefined) { renderError('INVALID_LANG'); return };
     guide = guide.find( ({ type }) => type === split[0].toUpperCase());
+    if (guide === undefined) { renderError('INVALID-CATEGORY'); return };
     guide = guide.categories.find( ({ type }) => type === split[1].toUpperCase());
+    if (guide === undefined) { renderError('INVALID_SUBCATEGORY'); return };
     guide = guide.files.find( ({ content }) => content === split[2].toUpperCase());
+    if (guide === undefined) { renderError('INVALID_GUIDE'); return };
 
     console.log(guide)
-    render(session.guideText, guide)
+
+    // Fetch text and render
+    fetch(`assets/guides/${session.lang}/${guide.path}.md`)
+        .then(r => r.text())
+        .then(text => render(text, guide));
 
 };
 
@@ -46,7 +66,6 @@ function main() {
 // Files to load
 const promises = [
     fetch('assets/guides/guides.json').then(r => r.json()).then(json => session.data = json),
-    fetch('assets/guides/' + session.lang + '/' + session.guide + '.md').then(r => r.text()).then(md => session.guideText = md),
 ];
 
 // Run if all files are loaded
