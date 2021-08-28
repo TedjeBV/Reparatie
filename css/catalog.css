@@ -15,3 +15,11 @@ div.category-container:hover {
 
     border-radius: 4px;
 }
+
+div.category-content {
+    display: none;
+}
+
+div.category-container:hover div.category-content {
+    display: block;
+}
