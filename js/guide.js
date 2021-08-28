@@ -14,7 +14,7 @@ function render(guide, info) {
     infoContainer.classList.add('info');
 
     const author = document.createElement('span');
-    author.innerHTML = getTranslation('WORDS.BY') + ' ' + info.author;
+    author.innerHTML = getTranslation('WORDS.BY', true) + ' ' + info.author;
     infoContainer.appendChild(author);
 
     container.appendChild(infoContainer);
