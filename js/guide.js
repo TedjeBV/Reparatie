@@ -38,7 +38,7 @@ function render(guide, info) {
     infoContainer.classList.add('info');
 
     const author = document.createElement('span');
-    author.innerHTML = 'Door ' + info.author;
+    author.innerHTML = getTranslation('WORDS.BY') + ' ' + info.author;
     infoContainer.appendChild(author);
 
     container.appendChild(infoContainer);
@@ -60,10 +60,10 @@ function renderError(error) {
     const container = document.querySelector('main');
 
     const errorHeader = document.createElement('h1');
-    errorHeader.innerHTML = 'Oeps!';
+    errorHeader.innerHTML = getTranslation('ERROR.HEADER');
 
     const errorText = document.createElement('p');
-    errorText.innerText = 'GUIDE_NOT_FOUND';
+    errorText.innerText = getTranslation('ERROR.GUIDE_NOT_FOUND');
 
     const errorInfo = document.createElement('p');
     errorInfo.classList.add('warning');

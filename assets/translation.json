@@ -1,8 +1,14 @@
 {
     "nl": {
 
-        "ERROR_HEADER": "Oeps!",
-        "GUIDE_NOT_FOUND": "Handleiding niet gevonden!"
+        "WORDS": {
+            "BY": "Door"
+        },
+
+        "ERROR": {
+            "HEADER": "Oeps!",
+            "GUIDE_NOT_FOUND": "Handleiding niet gevonden!"
+        }
 
     }
 }
