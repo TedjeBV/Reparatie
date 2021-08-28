@@ -1,8 +1,11 @@
 {
     "nl": {
 
+        "LAPTOP": "laptop",
+        "KEYBOARD": "toetsenbord",
+
         "WORDS": {
-            "BY": "Door"
+            "BY": "door"
         },
 
         "ERROR": {

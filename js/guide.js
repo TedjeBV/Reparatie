@@ -5,30 +5,6 @@ session.language = 'nl';
 
 session.guide = decodeURI((new URL(document.location)).searchParams.get('guide'));
 
-// Get correct tranlation
-function getTranslation(key) {
-    // Check if language is available
-    if (session.translation[session.language] === undefined) { return key; };
-
-    // Split the key
-    const keys = key.split('.');
-    let translation = session.translation[session.language];
-
-    // Loop through the keys to get the correct translation
-    for (let i = 0; i < keys.length; i++) {
-        translation = translation[keys[i]];
-        if (translation === undefined) {
-            console.error(`Translation for ${key} in ${session.language} not found`);
-            return key
-        };
-        if (typeof translation !== 'object') { return translation; }
-    }
-
-    console.error(`Translation for ${key} in ${session.language} not found`);
-    return key
-
-};
-
 // Renderer
 function render(guide, info) {
 

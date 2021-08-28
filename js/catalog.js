@@ -1,12 +1,12 @@
 // Session object to store data
 const session = {};
 
-session.lang = 'nl';
+session.language = 'nl';
 
 // Renderer functions
 function render(data) {
 
-    data[session.lang].forEach(category => {
+    data[session.language].forEach(category => {
         const container = renderCategory(category);
         document.getElementById('categories').appendChild(container);
     });
@@ -21,7 +21,7 @@ function renderCategory(category) {
 
     // Header
     const header = document.createElement('h3');
-    header.innerText = category.type;
+    header.innerText = getTranslation(category.type, true);
     container.appendChild(header);
 
     // Content
@@ -35,7 +35,7 @@ function renderCategory(category) {
         categoryContainer.classList.add('subcategory-container');
 
         const categoryHeader = document.createElement('h4');
-        categoryHeader.innerText = subcategory.type;
+        categoryHeader.innerText = getTranslation(subcategory.type, true);
 
         const categoryContent = document.createElement('div');
         categoryContent.classList.add('subcategory-content');
@@ -73,6 +73,7 @@ function main() {
 // Fetch all needed files and run
 // Files to load
 const promises = [
+    fetch('assets/translation.json').then(r => r.json()).then(json => session.translation = json),
     fetch('assets/guides/guides.json').then(r => r.json()).then(json => session.data = json),
 ];
 
