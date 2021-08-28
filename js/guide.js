@@ -24,12 +24,30 @@ function render(guide, info) {
 
     container.appendChild(guideText);
 
+    console.log(`Rendered guide "${info.path}"`);
+
 }
 
 // Error renderer
 function renderError(error) {
 
     console.error('Guide Renderer Error: ' + error);
+
+    const container = document.querySelector('main');
+
+    const errorHeader = document.createElement('h1');
+    errorHeader.innerHTML = 'Oeps!';
+
+    const errorText = document.createElement('p');
+    errorText.innerText = 'GUIDE_NOT_FOUND';
+
+    const errorInfo = document.createElement('p');
+    errorInfo.classList.add('warning');
+    errorInfo.innerText = error;
+
+    container.appendChild(errorHeader);
+    container.appendChild(errorText);
+    container.appendChild(errorInfo);
 
 }
 
@@ -38,8 +56,6 @@ function main() {
 
     // Check if guide is selected
     if (session.guide === 'null') { renderError('NO_SELECT'); return };
-
-    // console.log('Loading guide: ' + session.guide);
 
     // Get correct guide from data
     const split = session.guide.split('-');
@@ -51,8 +67,6 @@ function main() {
     if (guide === undefined) { renderError('INVALID_SUBCATEGORY'); return };
     guide = guide.files.find( ({ content }) => content === split[2].toUpperCase());
     if (guide === undefined) { renderError('INVALID_GUIDE'); return };
-
-    console.log(guide)
 
     // Fetch text and render
     fetch(`assets/guides/${session.lang}/${guide.path}.md`)
