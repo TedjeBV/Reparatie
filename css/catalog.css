@@ -21,7 +21,7 @@ div.category-content {
     display: none;
 }
 
-div.category-container:focus div.category-content {
+div.category-container:focus-within div.category-content {
     display: block;
 }
 
