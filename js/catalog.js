@@ -46,7 +46,14 @@ function renderCategory(category) {
         subcategory.files.forEach(guide => {
             const guideContainer = document.createElement('li');
             guideContainer.classList.add('guide');
-            guideContainer.innerText = guide.name;
+            
+            const guideLink = document.createElement('a');
+            guideLink.classList.add('guide-link');
+            guideLink.href = `guide.html?guide=${guide.path}`;
+            guideLink.innerText = guide.name;
+
+            guideContainer.appendChild(guideLink);
+
             guides.appendChild(guideContainer);
         });
 

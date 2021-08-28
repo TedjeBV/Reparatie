@@ -23,3 +23,7 @@ div.category-content {
 div.category-container:hover div.category-content {
     display: block;
 }
+
+a.guide-link {
+    color: white;
+}
